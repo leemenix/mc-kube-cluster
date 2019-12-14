@@ -1,0 +1,13 @@
+- name: Prepare hosts file
+  template:
+    src: "{{ role_path }}/files/hosts.j2"
+    dest: "{{ playbook_dir }}/hosts"
+
+- name: Prepare /etc/hosts file
+  lineinfile:
+    dest: /etc/hosts
+    line: "{{ item }}"
+  with_items:
+    - "{{ master_fqdn }} {{ master_ip }}"
+    - "{{ worker_1_fqdn }} {{ worker_1_ip }}"
+    - "{{ worker_2_fqdn }} {{ worker_2_ip }}"

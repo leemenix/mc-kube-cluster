@@ -1,0 +1,10 @@
+- hosts: master
+  become: yes
+  tasks:
+    - name: install kubectl
+      become_user: root
+      apt:
+        name: kubectl={{ kubectl_ver }}
+        state: present
+        force: yes
+

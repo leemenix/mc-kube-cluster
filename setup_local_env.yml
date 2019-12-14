@@ -1,0 +1,22 @@
+---
+  - hosts: localhost
+    become: yes
+    vars:
+      remote_user: mc
+      master_ip: "master"
+      worker_1_ip: "worker-node-01"
+      worker_2_ip: "worker-node-02"
+      master_fqdn: "192.168.0.101"
+      worker_1_fqdn: "192.168.0.102"
+      worker_2_fqdn: "192.168.0.103"
+      python_interpreter: "/usr/bin/python3"
+      kubelet_ver: "1.16.0-00"
+      kubectl_ver: "{{kubelet_ver}}"
+      kubeadm_ver: "{{kubelet_ver}}"
+      pod_network_cidr: "10.244.0.0/16"
+
+   
+    tasks:
+
+      - include_role:
+          name: setup_inventory
