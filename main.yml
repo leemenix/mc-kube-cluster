@@ -1,0 +1,16 @@
+---
+  - hosts: all
+    become: yes
+    tasks:
+
+      - include_role:
+          name: create_deploy_user
+      
+      - include_role:
+          name: kube_dependencies
+
+  - import_playbook: roles/kube_ctl/tasks/main.yml
+
+  - import_playbook: roles/kube_master/tasks/main.yml
+
+  - import_playbook: roles/kube_workers/tasks/main.yml
